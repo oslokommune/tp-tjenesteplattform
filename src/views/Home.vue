@@ -3,7 +3,10 @@
 		<h1>Hva kan vi hjelpe deg med?</h1>
       <div class="WizardStep">
           <div>
-              <div class="Question">{{ currentQuestion.q }}</div>
+              <div v-if="currentQuestion.lastStep">
+                  <button>{{ currentQuestion.message }}</button>
+              </div>
+              <div v-else class="Question">{{ currentQuestion.q }}</div>
               <div class="container">
                   <div v-for="(answer, index) in currentQuestion.answers">
                     <button class="Answer" @click="click(index)">{{ answer.text }}</button>
@@ -24,7 +27,7 @@
             this.currentQuestion = this.questions.innledning
         },
         data: () => ({
-            currentQuestion: {q: "", answers: [{text: ""}, {text: ""}]},
+            currentQuestion: {q: "", answers: [{text: ""}, {text: ""}], lastStep: false},
             questions: {
                 innledning: {
                     q: "Skal du lage eller dele noe?",
@@ -36,7 +39,8 @@
                         {
                             next: "dataEllerApi",
                             text: "Jeg har noe jeg ønsker å dele"
-                        }]
+                        }],
+                    lastStep: false
                 },
                 nyEllerEksisterende: {
                     q: "Skal du lage en ny app/løsning eller har du en eksisterende app/løsning?",
@@ -48,7 +52,8 @@
                         {
                             next: "trengsNyttKjoreMiljo",
                             text: "Jeg har en eksisterende app/løsning"
-                        }]
+                        }],
+                    lastStep: false
                 },
                 finnesDetFraFor: {
                     q: "Finnes det fra før?",
@@ -64,7 +69,8 @@
                         {
                             next: "trengsNyttKjoreMiljo",
                             text: "Nei"
-                        }]
+                        }],
+                    lastStep: false
                 },
                 trengsNyttKjoreMiljo: {
                     q: "Trenger du et nytt kjøremiljø?",
@@ -76,7 +82,8 @@
                         {
                             next: "trengerDuOvervakning",
                             text: "Nei"
-                        }]
+                        }],
+                    lastStep: false
                 },
                 trengerDuOvervakning: {
                     q: "Trenger du overvakning?",
@@ -88,7 +95,8 @@
                         {
                             next: "vetIkke",
                             text: "Nei"
-                        }]
+                        }],
+                    lastStep: false
                 },
                 dataEllerApi: {
                     q: "Trenger du data eller API?",
@@ -100,35 +108,43 @@
                         {
                             next: "utviklerportal",
                             text: "Jeg har API eller trenger API"
-                        }]
+                        }],
+                    lastStep: false
                 },
                 taKontakt: {
-                    q: "TA KONTAKT FOR GJENBRUK!!!",
-                    answers: []
+                    message: "TA KONTAKT FOR GJENBRUK!!!",
+                    answers: [],
+                    lastStep: true
                 },
                 oversikt: {
-                    q: "HER ER EN OVERSIKT!!!",
-                    answers: []
+                    message: "HER ER EN OVERSIKT!!!",
+                    answers: [],
+                    lastStep: true
                 },
                 platform: {
-                    q: "PLATTFORM!!!",
-                    answers: []
+                    message: "PLATTFORM!!!",
+                    answers: [],
+                    lastStep: true
                 },
                 infrastruktur: {
-                    q: "INFRASTRUKTUR!!!",
-                    answers: []
+                    message: "INFRASTRUKTUR!!!",
+                    answers: [],
+                    lastStep: true
                 },
                 dataplatform: {
-                    q: "DATAPLATTFORM!!!",
-                    answers: []
+                    message: "DATAPLATTFORM!!!",
+                    answers: [],
+                    lastStep: true
                 },
                 utviklerportal: {
-                    q: "UTVIKLERPORTALEN!!!",
-                    answers: []
+                    message: "UTVIKLERPORTALEN!!!",
+                    answers: [],
+                    lastStep: true
                 },
                 vetIkke: {
-                    q: "VI VET IKKE!!!",
-                    answers: []
+                    message: "VI VET IKKE!!!",
+                    answers: [],
+                    lastStep: true
                 }
             }
         }),
