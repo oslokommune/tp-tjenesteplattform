@@ -13,6 +13,9 @@
                   <div v-for="(answer, index) in currentQuestion.answers">
                     <button class="Answer" @click="click(index)">{{ answer.text }}</button>
                   </div>
+                  <div v-if="currentQuestion.backButtonEnabled">
+                      <button class="Answer" @click="goBack()">Gå tilbake</button>
+                  </div>
               </div>
           </div>
       </div>
@@ -29,7 +32,8 @@
             this.currentQuestion = this.questions.innledning
         },
         data: () => ({
-            currentQuestion: {q: "", answers: [{text: ""}, {text: ""}], lastStep: false},
+            currentQuestion: {q: "", answers: [{text: ""}, {text: ""}], lastStep: false, backButtonEnabled: false},
+            prevStates: [],
             questions: {
                 innledning: {
                     q: "La oss hjelpe deg å finne rett tjeneste, skal du lage eller dele noe?",
@@ -42,7 +46,8 @@
                             next: "dataEllerApi",
                             text: "Jeg har noe jeg ønsker å dele"
                         }],
-                    lastStep: false
+                    lastStep: false,
+                    backButtonEnabled: false
                 },
                 nyEllerEksisterende: {
                     q: "Skal du lage en ny app/løsning eller har du en eksisterende app/løsning?",
@@ -55,7 +60,8 @@
                             next: "trengsNyttKjoreMiljo",
                             text: "Jeg har en eksisterende app/løsning"
                         }],
-                    lastStep: false
+                    lastStep: false,
+                    backButtonEnabled: true
                 },
                 finnesDetFraFor: {
                     q: "Finnes det fra før?",
@@ -72,7 +78,8 @@
                             next: "trengsNyttKjoreMiljo",
                             text: "Nei"
                         }],
-                    lastStep: false
+                    lastStep: false,
+                    backButtonEnabled: true
                 },
                 dekkesBehov: {
                     q: "Dekker eksisterende app/løsning behovet ditt?",
@@ -98,7 +105,8 @@
                             next: "trengerDuOvervakning",
                             text: "Nei"
                         }],
-                    lastStep: false
+                    lastStep: false,
+                    backButtonEnabled: true
                 },
                 trengerDuOvervakning: {
                     q: "Trenger du overvakning?",
@@ -111,7 +119,8 @@
                             next: "vetIkke",
                             text: "Nei"
                         }],
-                    lastStep: false
+                    lastStep: false,
+                    backButtonEnabled: true
                 },
                 dataEllerApi: {
                     q: "Trenger du data eller API?",
@@ -124,73 +133,82 @@
                             next: "utviklerportal",
                             text: "Jeg har API eller trenger API"
                         }],
-                    lastStep: false
+                    lastStep: false,
+                    backButtonEnabled: true
                 },
                 taKontakt: {
                     message: "Ta kontakt for gjenbruk",
                     button: "Gå til Kontakt",
                     link: "",
                     answers: [],
-                    lastStep: true
+                    lastStep: true,
+                    backButtonEnabled: true
                 },
                 taKontaktProduktEier: {
                     message: "Du trenger å ta kontakt med produkteier",
                     button: "Kontakt produkteieren",
                     link: "",
                     answers: [],
-                    lastStep: true
+                    lastStep: true,
+                    backButtonEnabled: true
                 },
                 oversikt: {
                     message: "Du trenger en oversikt over kommunens løsninger",
                     button: "Gå til Oversikten",
                     link: "",
                     answers: [],
-                    lastStep: true
+                    lastStep: true,
+                    backButtonEnabled: true
                 },
                 platform: {
                     message: "Tjenesten du trenger er Plattform",
                     button: "Gå til Plattform",
                     link: "https://oslokommune.github.io/tp-plattform/#/",
                     answers: [],
-                    lastStep: true
+                    lastStep: true,
+                    backButtonEnabled: true
                 },
                 infrastruktur: {
                     message: "Tjenesten du trenger er Infrastruktur",
                     button: "Gå til Infrastruktur",
                     link: "https://oslokommune.github.io/tp-infrastruktur/#/",
                     answers: [],
-                    lastStep: true
+                    lastStep: true,
+                    backButtonEnabled: true
                 },
                 dataplatform: {
                     message: "Tjenesten du trenger er Dataplattform",
                     button: "Gå til Dataplattform",
                     link: "https://oslokommune.github.io/tp-dataplattform/#/",
                     answers: [],
-                    lastStep: true
+                    lastStep: true,
+                    backButtonEnabled: true
                 },
                 utviklerportal: {
                     message: "Tjenesten du trenger er Utviklerportalen",
                     button: "Gå til Utviklerportalen",
                     link: "https://oslokommune.github.io/tp-utviklerportalen/#/",
                     answers: [],
-                    lastStep: true
+                    lastStep: true,
+                    backButtonEnabled: true
                 },
                 vetIkke: {
                     message: "Vi vet ikke hvordan vi kan hjelpe deg...😞",
                     button: "Prøv igjen",
                     link: "",
                     answers: [],
-                    lastStep: true
+                    lastStep: true,
+                    backButtonEnabled: true
                 }
             }
         }),
         methods: {
             click(index) {
+                this.prevStates.push(this.currentQuestion)
                 this.currentQuestion = this.questions[this.currentQuestion.answers[index].next];
             },
-            openLink(link) {
-                routeData = this.$router
-                open(link, self)
+            goBack() {
+                this.currentQuestion = this.prevStates.pop()
             }
         }
     }
