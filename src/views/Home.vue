@@ -6,7 +6,7 @@
               <div v-if="currentQuestion.lastStep">
                   <span class="tada">🎉</span>
                   <h2>{{ currentQuestion.message }}</h2>
-                  <button class="service" @click="openLink(currentQuestion.link)">{{ currentQuestion.button }}</button>
+                  <a :href="currentQuestion.link">{{ currentQuestion.button }}</a>
               </div>
               <div v-else class="Question">{{ currentQuestion.q }}</div>
               <div class="container">
@@ -189,6 +189,7 @@
                 this.currentQuestion = this.questions[this.currentQuestion.answers[index].next];
             },
             openLink(link) {
+                routeData = this.$router
                 open(link, self)
             }
         }
