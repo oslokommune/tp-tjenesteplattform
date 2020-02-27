@@ -1,10 +1,12 @@
 <template>
   <div class="home">
-		<h1>Hva kan vi hjelpe deg med?</h1>
+		<h1>Tjenesteplattformen</h1>
       <div class="WizardStep">
           <div>
               <div v-if="currentQuestion.lastStep">
-                  <button>{{ currentQuestion.message }}</button>
+                  <span class="tada">🎉</span>
+                  <h2>{{ currentQuestion.message }}</h2>
+                  <button class="service">{{ currentQuestion.button }}</button>
               </div>
               <div v-else class="Question">{{ currentQuestion.q }}</div>
               <div class="container">
@@ -112,32 +114,38 @@
                     lastStep: false
                 },
                 taKontakt: {
-                    message: "TA KONTAKT FOR GJENBRUK!!!",
+                    message: "Ta kontakt for gjenbruk",
+                  button: "Gå til Kontakt",
                     answers: [],
                     lastStep: true
                 },
                 oversikt: {
-                    message: "HER ER EN OVERSIKT!!!",
+                    message: "Du trenger en oversikt over kommunens løsninger",
+                    button: "Gå til Oversikten",
                     answers: [],
                     lastStep: true
                 },
                 platform: {
-                    message: "PLATTFORM!!!",
+                    message: "Tjenesten du trenger er Plattform",
+                    button: "Gå til Plattform",
                     answers: [],
                     lastStep: true
                 },
                 infrastruktur: {
-                    message: "INFRASTRUKTUR!!!",
+                    message: "Tjenesten du trenger er Infrastruktur",
+                     button: "Gå til Infrastruktur",
                     answers: [],
                     lastStep: true
                 },
                 dataplatform: {
-                    message: "DATAPLATTFORM!!!",
+                    message: "Tjenesten du trenger er Dataplattform",
+                    button: "Gå til Dataplattform",
                     answers: [],
                     lastStep: true
                 },
                 utviklerportal: {
-                    message: "UTVIKLERPORTALEN!!!",
+                    message: "Tjenesten du trenger er Utviklerportalen",
+                    button: "Gå til Utviklerportalen",
                     answers: [],
                     lastStep: true
                 },
@@ -158,6 +166,10 @@
 
 <style lang="scss" scoped>
 
+.tada {
+    font-size: 60pt;
+    margin-top: 7em;
+}
 h1 {
     margin-top: 2em;
 }
@@ -171,6 +183,28 @@ h1 {
     margin-bottom: 2em;
 }
 
+.service {
+    background-color: #ff8274;
+    border: none;
+    color: white;
+    padding: 10px 25px;
+    width: 15em;
+    margin-right: 1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    vertical-align: top;
+    min-height: 5em;
+    cursor: pointer;
+
+    &:hover {
+        color: black;
+        background: #e0adff;
+        border-color: #e0adff;
+        text-decoration: none;
+    }
+
+}
 .Answer {
     background-color: #2a2859;
     border: none;
