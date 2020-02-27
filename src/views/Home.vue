@@ -4,8 +4,10 @@
       <div class="WizardStep">
           <div>
               <div class="Quesion">{{ currentQuestion.q }}</div>
-              <button class="Yes" @click="clickYes()">{{ currentQuestion.y.text }}</button>
-              <button class="No" @click="clickNo()">{{currentQuestion.n.text}}</button>
+
+              <div v-for="(answer, index) in currentQuestion.answers">
+                <button class="Answer" @click="click(index)">{{ answer.text }}</button>
+              </div>
           </div>
       </div>
   </div>
@@ -19,60 +21,61 @@ export default {
     name: 'Home',
     mounted: function() { this.currentQuestion = this.questions.q1 },
     data: () => ({
-        currentQuestion: { q:"", y: {text:""}, n: {text:""}},
+        currentQuestion: { q:"", answers: [{text:""}, {text:""}]},
         questions: {
             q1: {
                 q: "Liker du q1?",
-                y: {
+                answers: [{
                     next: "q1",
                     text: "Ja"
                 },
-                n: {
+                {
                     next: "q2",
                     text: "Nei"
-                }
+                },
+                {
+                    next: "q4",
+                    text: "Visst faen"
+                }]
             },
             q2: {
                 q: "Liker du q2?",
-                y: {
+                answers: [{
                     next: "q1",
                     text: "Ja"
                 },
-                n: {
+                {
                     next: "q3",
                     text: "Nei"
-                }
+                }]
             },
             q3: {
                 q: "Liker du q3?",
-                y: {
+                answers: [{
                     next: "q2",
                     text: "Ja"
                 },
-                n: {
+                {
                     next: "q4",
                     text: "Nei"
-                }
+                }]
             },
             q4: {
                 q: "Hva liker du?",
-                y: {
+                answers: [{
                     next: "q2",
                     text: "Rock"
                 },
-                n: {
+                {
                     next: "q1",
                     text: "Klassisk"
-                }
+                }]
             }
         }
     }),
     methods: {
-        clickYes() {
-            this.currentQuestion = this.questions[this.currentQuestion.y.next];
-        },
-        clickNo() {
-            this.currentQuestion = this.questions[this.currentQuestion.n.next];
+        click(index) {
+            this.currentQuestion = this.questions[this.currentQuestion.answers[index].next];
         }
     }
 }
