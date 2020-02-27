@@ -17,38 +17,62 @@
 
 export default {
     name: 'Home',
+    mounted: function() { this.currentQuestion = this.questions.q1 },
     data: () => ({
-        currentQuestion: {
-            q: "Liker du jazz?",
-            y: {
-                next: "q2",
-                text: "Ja"
-            },
-            n: {
-                next: "q3",
-                text: "Nei"
-            }
-        },
+        currentQuestion: { q:"", y: {text:""}, n: {text:""}},
         questions: {
             q1: {
-                q: "Liker du jazz?",
+                q: "Liker du q1?",
                 y: {
+                    next: "q1",
+                    text: "Ja"
+                },
+                n: {
                     next: "q2",
+                    text: "Nei"
+                }
+            },
+            q2: {
+                q: "Liker du q2?",
+                y: {
+                    next: "q1",
                     text: "Ja"
                 },
                 n: {
                     next: "q3",
                     text: "Nei"
                 }
+            },
+            q3: {
+                q: "Liker du q3?",
+                y: {
+                    next: "q2",
+                    text: "Ja"
+                },
+                n: {
+                    next: "q4",
+                    text: "Nei"
+                }
+            },
+            q4: {
+                q: "Hva liker du?",
+                y: {
+                    next: "q2",
+                    text: "Rock"
+                },
+                n: {
+                    next: "q1",
+                    text: "Klassisk"
+                }
             }
         }
     }),
     methods: {
         clickYes() {
-            alert("You pressed Yes!!!")
+            this.currentQuestion = this.questions[this.currentQuestion.y.next];
         },
         clickNo() {
-            ""
+            this.currentQuestion = this.questions[this.currentQuestion.n.next];
         }
     }
 }
