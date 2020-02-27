@@ -19,19 +19,19 @@
 
 export default {
     name: 'Home',
-    mounted: function() { this.currentQuestion = this.questions.q1 },
+    mounted: function() { this.currentQuestion = this.questions.innledning },
     data: () => ({
         currentQuestion: { q:"", answers: [{text:""}, {text:""}]},
         questions: {
-            q1: {
-                q: "Liker du q1?",
+            innledning: {
+                q: "Skal du lage eller dele noe?",
                 answers: [{
-                    next: "q1",
-                    text: "Ja"
+                    next: "q2",
+                    text: "Jeg har en ny eller eksisterende løsning som jeg skal lage noe på"
                 },
                 {
-                    next: "q2",
-                    text: "Nei"
+                    next: "q3",
+                    text: "Jeg har noe jeg ønsker å dele"
                 },
                 {
                     next: "q4",
@@ -41,7 +41,7 @@ export default {
             q2: {
                 q: "Liker du q2?",
                 answers: [{
-                    next: "q1",
+                    next: "innledning",
                     text: "Ja"
                 },
                 {
@@ -67,7 +67,7 @@ export default {
                     text: "Rock"
                 },
                 {
-                    next: "q1",
+                    next: "innledning",
                     text: "Klassisk"
                 }]
             }
