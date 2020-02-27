@@ -17,70 +17,128 @@
 </template>
 
 <script>
-// @ is an alias to /src
+    // @ is an alias to /src
 
-export default {
-    name: 'Home',
-    mounted: function() { this.currentQuestion = this.questions.innledning },
-    data: () => ({
-        currentQuestion: { q:"", answers: [{text:""}, {text:""}]},
-        questions: {
-            innledning: {
-                q: "Skal du lage eller dele noe?",
-                answers: [{
-                    next: "q2",
-                    text: "Jeg har en ny eller eksisterende løsning som jeg skal lage noe på"
+    export default {
+        name: 'Home',
+        mounted: function () {
+            this.currentQuestion = this.questions.innledning
+        },
+        data: () => ({
+            currentQuestion: {q: "", answers: [{text: ""}, {text: ""}]},
+            questions: {
+                innledning: {
+                    q: "Skal du lage eller dele noe?",
+                    answers: [
+                        {
+                            next: "nyEllerEksisterende",
+                            text: "Jeg har en ny eller eksisterende løsning som jeg skal lage noe på"
+                        },
+                        {
+                            next: "dataEllerApi",
+                            text: "Jeg har noe jeg ønsker å dele"
+                        }]
                 },
-                {
-                    next: "q3",
-                    text: "Jeg har noe jeg ønsker å dele"
+                nyEllerEksisterende: {
+                    q: "Skal du lage en ny app/løsning eller har du en eksisterende app/løsning?",
+                    answers: [
+                        {
+                            next: "finnesDetFraFor",
+                            text: "Jeg skal lage en ny app/løsning"
+                        },
+                        {
+                            next: "trengsNyttKjoreMiljo",
+                            text: "Jeg har en eksisterende app/løsning"
+                        }]
                 },
-                {
-                    next: "q4",
-                    text: "Visst faen"
-                }]
-            },
-            q2: {
-                q: "Liker du q2?",
-                answers: [{
-                    next: "innledning",
-                    text: "Ja"
+                finnesDetFraFor: {
+                    q: "Finnes det fra før?",
+                    answers: [
+                        {
+                            next: "taKontakt",
+                            text: "Ja"
+                        },
+                        {
+                            next: "oversikt",
+                            text: "Usikker"
+                        },
+                        {
+                            next: "trengsNyttKjoreMiljo",
+                            text: "Nei"
+                        }]
                 },
-                {
-                    next: "q3",
-                    text: "Nei"
-                }]
-            },
-            q3: {
-                q: "Liker du q3?",
-                answers: [{
-                    next: "q2",
-                    text: "Ja"
+                trengsNyttKjoreMiljo: {
+                    q: "Trenger du et nytt kjøremiljø?",
+                    answers: [
+                        {
+                            next: "platform",
+                            text: "Ja"
+                        },
+                        {
+                            next: "trengerDuOvervakning",
+                            text: "Nei"
+                        }]
                 },
-                {
-                    next: "q4",
-                    text: "Nei"
-                }]
-            },
-            q4: {
-                q: "Hva liker du?",
-                answers: [{
-                    next: "q2",
-                    text: "Rock"
+                trengerDuOvervakning: {
+                    q: "Trenger du overvakning?",
+                    answers: [
+                        {
+                            next: "infrastruktur",
+                            text: "Ja"
+                        },
+                        {
+                            next: "vetIkke",
+                            text: "Nei"
+                        }]
                 },
-                {
-                    next: "innledning",
-                    text: "Klassisk"
-                }]
+                dataEllerApi: {
+                    q: "Trenger du data eller API?",
+                    answers: [
+                        {
+                            next: "dataplatform",
+                            text: "Jeg har data eller trenger data"
+                        },
+                        {
+                            next: "utviklerportal",
+                            text: "Jeg har API eller trenger API"
+                        }]
+                },
+                taKontakt: {
+                    q: "TA KONTAKT FOR GJENBRUK!!!",
+                    answers: []
+                },
+                oversikt: {
+                    q: "HER ER EN OVERSIKT!!!",
+                    answers: []
+                },
+                platform: {
+                    q: "PLATTFORM!!!",
+                    answers: []
+                },
+                infrastruktur: {
+                    q: "INFRASTRUKTUR!!!",
+                    answers: []
+                },
+                dataplatform: {
+                    q: "DATAPLATTFORM!!!",
+                    answers: []
+                },
+                utviklerportal: {
+                    q: "UTVIKLERPORTALEN!!!",
+                    answers: []
+                },
+                vetIkke: {
+                    q: "VI VET IKKE!!!",
+                    answers: []
+                }
+            }
+        }),
+        methods: {
+            click(index) {
+                this.currentQuestion = this.questions[this.currentQuestion.answers[index].next];
             }
         }
-    }),
-    methods: {
-        click(index) {
-            this.currentQuestion = this.questions[this.currentQuestion.answers[index].next];
-        }
     }
-}
 </script>
 
 <style lang="scss" scoped>
