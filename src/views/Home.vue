@@ -32,7 +32,7 @@
             currentQuestion: {q: "", answers: [{text: ""}, {text: ""}], lastStep: false},
             questions: {
                 innledning: {
-                    q: "Skal du lage eller dele noe?",
+                    q: "La oss hjelpe deg å finne rett tjeneste, skal du lage eller dele noe?",
                     answers: [
                         {
                             next: "nyEllerEksisterende",
@@ -250,6 +250,7 @@ h1 {
     vertical-align: top;
     min-height: 10em;
     cursor: pointer;
+
 
     &:hover {
         color: black;
