@@ -128,12 +128,13 @@
                 },
                 taKontakt: {
                     message: "Ta kontakt for gjenbruk",
-                  button: "Gå til Kontakt",
+                    button: "Gå til Kontakt",
                     answers: [],
                     lastStep: true
                 },
                 taKontaktProduktEier: {
-                    message: "TA KONTAKT MED PRODUKTEIER!!!",
+                    message: "Du trenger å ta kontakt med produkteier",
+                    button: "Kontakt produkteieren",
                     answers: [],
                     lastStep: true
                 },
@@ -168,7 +169,8 @@
                     lastStep: true
                 },
                 vetIkke: {
-                    message: "VI VET IKKE!!!",
+                    message: "Vi vet ikke hvordan vi kan hjelpe deg...😞",
+                    button: "Prøv igjen",
                     answers: [],
                     lastStep: true
                 }
