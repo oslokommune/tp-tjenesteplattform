@@ -6,7 +6,7 @@
               <div v-if="currentQuestion.lastStep">
                   <span class="tada">🎉</span>
                   <h2>{{ currentQuestion.message }}</h2>
-                  <button class="service">{{ currentQuestion.button }}</button>
+                  <button class="service" @click="openLink(currentQuestion.link)">{{ currentQuestion.button }}</button>
               </div>
               <div v-else class="Question">{{ currentQuestion.q }}</div>
               <div class="container">
@@ -129,48 +129,56 @@
                 taKontakt: {
                     message: "Ta kontakt for gjenbruk",
                     button: "Gå til Kontakt",
+                    link: "",
                     answers: [],
                     lastStep: true
                 },
                 taKontaktProduktEier: {
                     message: "Du trenger å ta kontakt med produkteier",
                     button: "Kontakt produkteieren",
+                    link: "",
                     answers: [],
                     lastStep: true
                 },
                 oversikt: {
                     message: "Du trenger en oversikt over kommunens løsninger",
                     button: "Gå til Oversikten",
+                    link: "",
                     answers: [],
                     lastStep: true
                 },
                 platform: {
                     message: "Tjenesten du trenger er Plattform",
                     button: "Gå til Plattform",
+                    link: "https://oslokommune.github.io/tp-plattform/#/",
                     answers: [],
                     lastStep: true
                 },
                 infrastruktur: {
                     message: "Tjenesten du trenger er Infrastruktur",
-                     button: "Gå til Infrastruktur",
+                    button: "Gå til Infrastruktur",
+                    link: "https://oslokommune.github.io/tp-infrastruktur/#/",
                     answers: [],
                     lastStep: true
                 },
                 dataplatform: {
                     message: "Tjenesten du trenger er Dataplattform",
                     button: "Gå til Dataplattform",
+                    link: "https://oslokommune.github.io/tp-dataplattform/#/",
                     answers: [],
                     lastStep: true
                 },
                 utviklerportal: {
                     message: "Tjenesten du trenger er Utviklerportalen",
                     button: "Gå til Utviklerportalen",
+                    link: "https://oslokommune.github.io/tp-utviklerportalen/#/",
                     answers: [],
                     lastStep: true
                 },
                 vetIkke: {
                     message: "Vi vet ikke hvordan vi kan hjelpe deg...😞",
                     button: "Prøv igjen",
+                    link: "",
                     answers: [],
                     lastStep: true
                 }
@@ -179,6 +187,9 @@
         methods: {
             click(index) {
                 this.currentQuestion = this.questions[this.currentQuestion.answers[index].next];
+            },
+            openLink(link) {
+                open(link, self)
             }
         }
     }
