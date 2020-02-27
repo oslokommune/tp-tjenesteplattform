@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-		<h1>Velkommen til tjenesteplattformen</h1>
+		<h1>Hva kan vi hjelpe deg med?</h1>
       <div class="WizardStep">
           <div>
               <div class="Question">{{ currentQuestion.q }}</div>
@@ -9,7 +9,6 @@
                     <button class="Answer" @click="click(index)">{{ answer.text }}</button>
                   </div>
               </div>
-
           </div>
       </div>
   </div>
@@ -157,7 +156,7 @@ h1 {
 }
 
 .Answer {
-    background-color: #ff8274; /* Green */
+    background-color: #2a2859;
     border: none;
     color: white;
     padding: 15px 32px;
@@ -171,9 +170,9 @@ h1 {
     cursor: pointer;
 
     &:hover {
-        color: white;
-        background: hotpink;
-        border-color: hotpink;
+        color: black;
+        background: #6fe9ff;
+        border-color: #6fe9ff;
         text-decoration: none;
     }
 
