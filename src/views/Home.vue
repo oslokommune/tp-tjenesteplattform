@@ -61,7 +61,7 @@
                     q: "Finnes det fra før?",
                     answers: [
                         {
-                            next: "taKontakt",
+                            next: "dekkesBehov",
                             text: "Ja"
                         },
                         {
@@ -73,6 +73,19 @@
                             text: "Nei"
                         }],
                     lastStep: false
+                },
+                dekkesBehov: {
+                    q: "Dekker eksisterende app/løsning behovet ditt?",
+                    answers: [
+                        {
+                            next: "taKontakt",
+                            text: "Ja"
+                        },
+                        {
+                            next: "taKontaktProduktEier",
+                            text: "Nei"
+                        }
+                    ]
                 },
                 trengsNyttKjoreMiljo: {
                     q: "Trenger du et nytt kjøremiljø?",
@@ -116,6 +129,11 @@
                 taKontakt: {
                     message: "Ta kontakt for gjenbruk",
                   button: "Gå til Kontakt",
+                    answers: [],
+                    lastStep: true
+                },
+                taKontaktProduktEier: {
+                    message: "TA KONTAKT MED PRODUKTEIER!!!",
                     answers: [],
                     lastStep: true
                 },
