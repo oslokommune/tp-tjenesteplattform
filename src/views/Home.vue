@@ -3,11 +3,13 @@
 		<h1>Velkommen til tjenesteplattformen</h1>
       <div class="WizardStep">
           <div>
-              <div class="Quesion">{{ currentQuestion.q }}</div>
-
-              <div v-for="(answer, index) in currentQuestion.answers">
-                <button class="Answer" @click="click(index)">{{ answer.text }}</button>
+              <div class="Question">{{ currentQuestion.q }}</div>
+              <div class="container">
+                  <div v-for="(answer, index) in currentQuestion.answers">
+                    <button class="Answer" @click="click(index)">{{ answer.text }}</button>
+                  </div>
               </div>
+
           </div>
       </div>
   </div>
@@ -82,6 +84,42 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+
+h1 {
+    margin-top: 2em;
+}
+.container {
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+}
+
+.Question {
+    margin-bottom: 2em;
+}
+
+.Answer {
+    background-color: #ff8274; /* Green */
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    width: 15em;
+    margin-right: 1em;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    vertical-align: top;
+    min-height: 10em;
+    cursor: pointer;
+
+    &:hover {
+        color: white;
+        background: hotpink;
+        border-color: hotpink;
+        text-decoration: none;
+    }
+
+}
 p {
 	font-family: 'Oslo Sans', Avenir, Helvetica, Arial, sans-serif;
 }
