@@ -2,10 +2,10 @@
   <div class="home">
 		<h1>Værsego'! Lag magi</h1>
       <div class="WizardStep">
-          <div v-if="showQuestion1">
-              <div class="Quesion">Liker du jazz?</div>
-              <button class="Yes" @click="toggleQuestion1()">Ja</button>
-              <button class="No" @click="showQuestion1 = false">Nei</button>
+          <div>
+              <div class="Quesion">{{ currentQuestion.q }}</div>
+              <button class="Yes" @click="clickYes()">{{ currentQuestion.y.text }}</button>
+              <button class="No" @click="clickNo()">{{currentQuestion.n.text}}</button>
           </div>
       </div>
   </div>
@@ -18,11 +18,37 @@
 export default {
     name: 'Home',
     data: () => ({
-        showQuestion1: true,
+        currentQuestion: {
+            q: "Liker du jazz?",
+            y: {
+                next: "q2",
+                text: "Ja"
+            },
+            n: {
+                next: "q3",
+                text: "Nei"
+            }
+        },
+        questions: {
+            q1: {
+                q: "Liker du jazz?",
+                y: {
+                    next: "q2",
+                    text: "Ja"
+                },
+                n: {
+                    next: "q3",
+                    text: "Nei"
+                }
+            }
+        }
     }),
     methods: {
-        toggleQuestion1() {
-            this.showQuestion1 =
+        clickYes() {
+            alert("You pressed Yes!!!")
+        },
+        clickNo() {
+            ""
         }
     }
 }
