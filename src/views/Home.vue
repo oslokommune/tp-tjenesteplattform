@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-		<h1>Værsego'! Lag magi</h1>
+		<h1>Velkommen til tjenesteplattformen</h1>
       <div class="WizardStep">
           <div>
               <div class="Quesion">{{ currentQuestion.q }}</div>
