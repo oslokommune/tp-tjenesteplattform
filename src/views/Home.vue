@@ -1,10 +1,13 @@
 <template>
   <div class="home">
-		<h1>Tjenesteplattformen</h1>
+      <div class="back-button-container" v-if="currentQuestion.backButtonEnabled">
+          <button class="back-button" @click="goBack()">Gå tilbake</button>
+      </div>
       <div class="WizardStep">
+          <h1>Tjenesteguiden</h1>
           <div>
               <div v-if="currentQuestion.lastStep">
-                  <span class="tada">🎉</span>
+		            <img alt="success" src="https://media.giphy.com/media/xSM46ernAUN3y/giphy.gif"/>
                   <h2>{{ currentQuestion.message }}</h2>
                   <a :href="currentQuestion.link">{{ currentQuestion.button }}</a>
               </div>
@@ -12,9 +15,6 @@
               <div class="container">
                   <div v-for="(answer, index) in currentQuestion.answers">
                     <button class="Answer" @click="click(index)">{{ answer.text }}</button>
-                  </div>
-                  <div v-if="currentQuestion.backButtonEnabled">
-                      <button class="Answer" @click="goBack()">Gå tilbake</button>
                   </div>
               </div>
           </div>
@@ -92,7 +92,9 @@
                             next: "taKontaktProduktEier",
                             text: "Nei"
                         }
-                    ]
+                    ],
+                  lastStep: false,
+                  backButtonEnabled: true
                 },
                 trengsNyttKjoreMiljo: {
                     q: "Trenger du et nytt kjøremiljø?",
@@ -216,12 +218,35 @@
 
 <style lang="scss" scoped>
 
-.tada {
-    font-size: 60pt;
-    margin-top: 7em;
+.back-button {
+    background-color: #2a2859;
+    border: none;
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    font-size: 16px;
+    vertical-align: top;
+    cursor: pointer;
+    margin-top: 3em;
+    padding: 1em;
+
+
+    &:hover {
+        color: black;
+        background: #6fe9ff;
+        border-color: #6fe9ff;
+        text-decoration: none;
+    }
+}
+
+.back-button-container {
+    position: absolute;
 }
 h1 {
     margin-top: 2em;
+    display: inline-block;
+    font-size: 20px;
+    margin-bottom: 1em;
 }
 .container {
     display: flex;
@@ -231,6 +256,11 @@ h1 {
 
 .Question {
     margin-bottom: 2em;
+    font-size: 30px;
+}
+
+.WizardStep {
+    text-align: center;
 }
 
 .service {
@@ -252,6 +282,10 @@ h1 {
         background: #e0adff;
         border-color: #e0adff;
         text-decoration: none;
+    }
+
+    :last-child {
+        margin-right: 0;
     }
 
 }
@@ -276,7 +310,6 @@ h1 {
         border-color: #6fe9ff;
         text-decoration: none;
     }
-
 }
 p {
 	font-family: 'Oslo Sans', Avenir, Helvetica, Arial, sans-serif;
